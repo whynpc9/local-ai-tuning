@@ -1,0 +1,11 @@
+{
+  "label": "REPLACE_WITH_CANDIDATE_LABEL",
+  "order_design": "ABBA",
+  "experiment_id": "REPLACE_WITH_SHARED_EXPERIMENT_ID",
+  "trial_id": "REPLACE_WITH_UNIQUE_TRIAL_ID",
+  "order_index": 0,
+  "image_digest": "REPLACE_WITH_IMAGE_AT_SHA256_OR_NONE_NATIVE_BUILD",
+  "framework_revision": "REPLACE_WITH_IMMUTABLE_COMMIT_OR_RELEASE",
+  "server_config_sha256": "REPLACE_WITH_HASH_OF_LAUNCH_COMMAND_ENV_AND_PATCH_SET",
+  "served_model_name": "REPLACE_WITH_EXACT_MODEL_ARGUMENT"
+}

@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+
+# Local measurements and machine-specific inventories
+hardware*.json
+plan*.json
+results/
+telemetry-*.csv
+telemetry-*.log
+

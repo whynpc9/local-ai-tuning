@@ -1,0 +1,17 @@
+{
+  "base_model_id": "REPLACE_WITH_BASE_MODEL_ID_FROM_PLAN",
+  "artifact_id": "REPLACE_WITH_EXACT_MODEL_OR_TRANSFORMED_ARTIFACT_ID",
+  "artifact_revision": "REPLACE_WITH_IMMUTABLE_REVISION_OR_DIGEST",
+  "tokenizer_revision": "REPLACE_WITH_IMMUTABLE_REVISION_OR_DIGEST",
+  "transformation": "REPLACE_WITH_NONE_OR_EXACT_QUANTIZATION_PRUNING_CONVERSION_MANIFEST",
+  "quality_contract_id": "REPLACE_WITH_PREDECLARED_EVAL_CONTRACT_ID",
+  "advertised_context_tokens": "REPLACE_WITH_POSITIVE_INTEGER_CONTEXT_LIMIT",
+  "hardware_inventory_sha256s": [
+    "REPLACE_WITH_64_CHARACTER_SHA256_FROM_PLAN"
+  ],
+  "power_profile": "REPLACE_WITH_EXACT_POWER_MODE_LIMIT_AND_AC_OR_BATTERY_STATE",
+  "client_id": "REPLACE_WITH_CLIENT_VERSION_AND_LOCATION",
+  "cache_state": "warm-engine-cold-prefix",
+  "comparison_mode": "common-denominator",
+  "allowed_candidate_differences": []
+}

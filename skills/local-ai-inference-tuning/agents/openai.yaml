@@ -1,0 +1,5 @@
+interface:
+  display_name: "Local AI Inference Tuning"
+  short_description: "Choose and tune local LLM inference stacks"
+  default_prompt: "Use $local-ai-inference-tuning to select and empirically tune a local inference stack for my model, hardware, and tok/s objective."
+

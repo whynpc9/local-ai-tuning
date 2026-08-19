@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "run_id": "REPLACE_WITH_UNIQUE_QUALITY_RUN_ID",
+  "status": "passed",
+  "comparison_contract_sha256": "REPLACE_WITH_SHA256_PRINTED_FOR_THE_FILLED_COMPARISON_CONTRACT",
+  "quality_contract_id": "REPLACE_WITH_THE_SAME_PREDECLARED_EVAL_CONTRACT_ID",
+  "artifact_id": "REPLACE_WITH_EXACT_MODEL_OR_TRANSFORMED_ARTIFACT_ID",
+  "artifact_revision": "REPLACE_WITH_IMMUTABLE_REVISION_OR_DIGEST",
+  "image_digest": "REPLACE_WITH_THE_SAME_IMAGE_AT_SHA256_OR_NONE_NATIVE_BUILD",
+  "framework_revision": "REPLACE_WITH_THE_SAME_IMMUTABLE_COMMIT_OR_RELEASE",
+  "server_config_sha256": "REPLACE_WITH_THE_SAME_HASH_OF_LAUNCH_COMMAND_ENV_AND_PATCH_SET",
+  "suite_manifest_sha256": "REPLACE_WITH_64_CHARACTER_SHA256_OF_THE_PREDECLARED_TEST_SUITE",
+  "results_sha256": "REPLACE_WITH_64_CHARACTER_SHA256_OF_THE_RAW_QUALITY_RESULTS",
+  "gates": {
+    "deterministic-generation": "passed",
+    "strict-json": "passed",
+    "tool-calling": "passed",
+    "reasoning-modes": "passed",
+    "eos-and-repetition": "passed",
+    "long-context": "passed",
+    "speculation-or-cache-parity": "passed"
+  }
+}
