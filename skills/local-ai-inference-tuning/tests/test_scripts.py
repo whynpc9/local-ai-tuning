@@ -233,6 +233,7 @@ class ScriptUnitTests(unittest.TestCase):
         plan = planner.build_plan("qwen3.8-27b", "dgx-spark-1", "single-stream")
         ids = {candidate["id"] for candidate in plan["candidates"]}
         self.assertIn("qwen-sglang-sm121", ids)
+        self.assertIn("qwen-sglang-dflash2-sm121", ids)
         self.assertIn("qwen-vllm-gb10-challenger", ids)
         self.assertIn("qwen-magnitude-gguf-control", ids)
         self.assertTrue(all("artifact_class" in candidate for candidate in plan["candidates"]))
@@ -242,6 +243,7 @@ class ScriptUnitTests(unittest.TestCase):
         by_id = {candidate["id"]: candidate for candidate in plan["candidates"]}
         self.assertIn("qwen-omlx-oq4e-target-only-control", by_id)
         self.assertIn("qwen-omlx-oq4e-native-mtp", by_id)
+        self.assertIn("qwen-mlx-dflash2", by_id)
         self.assertIn("qwen-magnitude-llamacpp-metal-control", by_id)
         self.assertEqual(by_id["qwen-omlx-oq4e-target-only-control"]["baseline"]["speculative"], "off")
         self.assertEqual(
@@ -249,9 +251,17 @@ class ScriptUnitTests(unittest.TestCase):
             "Jundot/Qwen3.8-27B-oQ4e-mtp pinned by immutable revision",
         )
         self.assertIn("same exact oMLX artifact", by_id["qwen-omlx-oq4e-native-mtp"]["comparison_group"])
+        self.assertIn("dedf8df68adfb1afeaf7b7480c0a0243108177b4", by_id["qwen-mlx-dflash2"]["artifact"])
+        self.assertEqual(by_id["qwen-mlx-dflash2"]["sweeps"]["block_size"], [2, 3, 4, 5])
         self.assertIn("thermal-stability", plan["platform_policy"]["execution_lanes"])
         self.assertEqual(plan["platform_policy"]["warmup_gate"]["minimum_attempts"], 5)
         self.assertIn("observed_depth_histogram", plan["platform_policy"]["speculation_fields"])
+
+    def test_rtx_planner_includes_dflash2_challenger(self):
+        plan = planner.build_plan("qwen3.8-27b", "rtx-pro-6000-1", "single-stream")
+        by_id = {candidate["id"]: candidate for candidate in plan["candidates"]}
+        self.assertIn("qwen-sglang-dflash2-sm120", by_id)
+        self.assertIn("c14312a66420b75ca9a11bf1817c4db1fa26b097", by_id["qwen-sglang-dflash2-sm120"]["stack"])
 
     def test_planner_labels_default_objective_and_accepts_canonical_id(self):
         plan = planner.build_plan("deepseek-ai/DeepSeek-V4-Flash-0731", "dgx-spark-1")

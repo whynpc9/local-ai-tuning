@@ -34,6 +34,14 @@ Refresh these first for revisions, architecture, native context, quantization co
 - oMLX public source and releases: https://github.com/jundot/omlx and https://github.com/jundot/omlx/releases — the Weschera README incorrectly links an unrelated empty `github.com/omlx` account
 - oMLX entry reproduction: v0.6.1 `b587575f3696fbc86c236b906684a48a92f8b118`, with MLX 0.32.0, `mlx-lm@ab1806e8`, `mlx-vlm@78b96eb5`, and `dflash-mlx@2eb169f4` as declared in https://github.com/jundot/omlx/blob/v0.6.1/pyproject.toml
 - oMLX new deployment baseline: v0.6.2 `f2d36f3d25a7e7a2401a92eecafc28b8f8968ec7`; it fixes the v0.6.1 MTP+TurboQuant KV crash, so remeasure rather than reusing v0.6.1 numbers
+- DFlash 2 official article and ablations: https://inco.ai/blog/dflash2/
+- DFlash 2 Qwen checkpoint: `incoai/Qwen3.8-27B-DFlash2@dedf8df68adfb1afeaf7b7480c0a0243108177b4`, Apache-2.0, BF16 weights 3,848,817,896 bytes: https://huggingface.co/incoai/Qwen3.8-27B-DFlash2
+- DFlash 2 Qwen GGUF: BF16 3,860,293,152 bytes; Q8_0 2,056,414,752 bytes; Q4_K_M 1,143,006,752 bytes: https://huggingface.co/incoai/Qwen3.8-27B-DFlash2-GGUF
+- DFlash inference/evaluation repository reviewed at `07ebd93db9f472af339b644bb70221ad8428328a`; version `0.1.0` beta, MIT, no DFlash 2 training entrypoint found in the reviewed tree: https://github.com/z-lab/dflash
+- SGLang DFlash 2 support merged as https://github.com/sgl-project/sglang/pull/35371, merge commit `c14312a66420b75ca9a11bf1817c4db1fa26b097`; quantized target LM-head follow-ups `#35462`/`#35496` were still open at the cutoff
+- vLLM DFlash 2 `#52816` and unquantized-linear LM-head guard `#52883` were open at the cutoff: https://github.com/vllm-project/vllm/pull/52816 and https://github.com/vllm-project/vllm/pull/52883
+- llama.cpp DFlash 2 `#27342` was open at the cutoff; keep multimodal M-RoPE, platform CI, concurrency, and per-device draft-cap gates: https://github.com/ggml-org/llama.cpp/pull/27342
+- Apple prebuilt is the separate `z-lab/omlx-fork` tag `0.6.2-dflash2`, not an upstream jundot/oMLX release; continuous batching issue: https://github.com/z-lab/omlx-fork/releases/tag/0.6.2-dflash2 and https://github.com/jundot/omlx/issues/2854
 - DeepSeek speculative algorithms: https://github.com/deepseek-ai/DeepSpec
 - vLLM external speculators: https://github.com/vllm-project/speculators
 

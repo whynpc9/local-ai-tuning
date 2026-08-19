@@ -213,6 +213,7 @@ depth 越大不一定越快。Mia Qwen 的本机 sweep在3步达到峰值，4–
 | [Anemll dspark-vllm-gx10](https://github.com/Anemll/dspark-vllm-gx10) | 多个双 Spark recipe的原始 GB10 vLLM port |
 | [jasl SM120 harness](https://github.com/jasl/vllm-ds4-sm120-harness) | oracle、logprobs、tools、reasoning、长上下文、driver-health promotion gates |
 | [DeepSpec](https://github.com/deepseek-ai/DeepSpec) / [vLLM speculators](https://github.com/vllm-project/speculators) | DSpark/DFlash/EAGLE/MTP算法与 draft训练/评估 |
+| [DFlash 2](https://inco.ai/blog/dflash2/) / [公开 checkpoint](https://huggingface.co/incoai/Qwen3.8-27B-DFlash2) | Qwen3.8-27B 的 block-parallel drafter challenger；公开可复现边界与采用门见 [专题调研](2026-08-19-dflash2.md) |
 | [Magnitude](https://github.com/magnitudedev/magnitude) | GGUF exact fit、硬件校准、联合推荐、受控 endpoint benchmark |
 
 ### Qwen实测补充

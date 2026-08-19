@@ -12,6 +12,7 @@
 
 - [调研报告](research/2026-08-18-local-inference-landscape.md)
 - [Apple Silicon 扩展调研](research/2026-08-19-apple-silicon-extension.md)
+- [DFlash 2 专题调研](research/2026-08-19-dflash2.md)
 - [local-ai-inference-tuning skill](skills/local-ai-inference-tuning/SKILL.md)
 - [硬件采集脚本](skills/local-ai-inference-tuning/scripts/collect_hardware.py)
 - [Apple 运行窗 telemetry](skills/local-ai-inference-tuning/scripts/sample_apple_telemetry.py)

@@ -16,8 +16,8 @@ Framework cells below describe architecture/runtime support on capacity-suitable
 
 | Stack | Qwen3.8-27B | DeepSeek-V4-Flash-0731 | Best use | Main boundary |
 |---|---|---|---|---|
-| SGLang | model-specific image/cookbook; BF16, official FP8, community NVFP4; GDN state, MTP/EAGLE and external DSpark | released DSPARK path and official model cookbook | Qwen on DGX Spark/RTX; DeepSeek on supported multi-GPU hardware | Qwen core fixes can be newer than formal release; exact GB10 performance not supplied by boot matrix |
-| vLLM | architecture released, current correct GDN/MTP path may require post-release main or Qwen image; no official GB10 recipe | released architecture/DSpark; official recipes; GB10 uses community B12X image | DeepSeek full checkpoint; Qwen challenger | distinguish installed commit from version/title; community SM120/121 stacks include patches |
+| SGLang | model-specific image/cookbook; BF16, official FP8, community NVFP4; GDN state, MTP/EAGLE, external DSpark, and DFlash 2 on main | released DSPARK path and official model cookbook | Qwen on DGX Spark/RTX; DeepSeek on supported multi-GPU hardware | DFlash 2 entered main on 2026-08-19 but quantized target LM-head follow-ups remain open; exact GB10 performance not supplied by H200 evidence |
+| vLLM | architecture released; current correct GDN/MTP path may require post-release main or Qwen image; DFlash 2 is open-PR-only at the snapshot | released architecture/DSpark; official recipes; GB10 uses community B12X image | DeepSeek full checkpoint; Qwen challenger | distinguish installed commit from version/title; do not describe DFlash 2 as released while `#52816`/`#52883` are open |
 | B12X / SparkInfer | SM120/121 NVFP4/MXFP8 and related kernels via a vLLM fork | sparse/compressed MLA, MoE, collectives, FP8/NVFP4-related kernels via vLLM fork | high-performance Blackwell consumer/GB10 kernel layer | kernel library, not an API server; project states non-production/datacenter boundary |
 | TensorRT-LLM | exact Qwen checkpoint has unresolved/patch-only paths | DeepSeek support is current RC/main and strongest on data-center Blackwell | later challenger on NVIDIA-supported exact model/hardware | DGX Spark beta/single-node validation and exact target gaps; do not promote by vendor name alone |
 | Magnitude / llama.cpp | cataloged GGUF Q4/Q6/Q8; exact GGUF planner; no current catalog draft for Qwen | cataloged GGUF Q4/Q8 with DSpark draft; generic endpoint benchmark | simple private local agent, GGUF, partial placement, fit estimation, controlled comparison | different artifacts and kernels; cataloged DeepSeek Q4/Q8 exceed one Spark before runtime; no proof it maximizes CUDA NVFP4/FP8 or multi-node tok/s |
@@ -37,6 +37,7 @@ Framework cells below describe architecture/runtime support on capacity-suitable
 | NVFP4 | community checkpoint, SM120/121 recipe | community checkpoint, Blackwell-specific | GGUF quantizations, not the same format |
 | native MTP | EAGLE-style parameters; current model recipe | `method=mtp`; installed-revision gate | upstream/rolling behavior; catalog has no Qwen3.8 draft |
 | external DSpark | current DGX recipe covers pinned `RadixArk/Qwen3.8-27B-DSpark`; ReplaySSM compatibility and depth are explicit sweeps | not the default official Qwen lane | no catalog declaration |
+| DFlash 2 | main supports the public `incoai/Qwen3.8-27B-DFlash2`; full/quantized target compatibility and exact SM kernels are gates | open PR only at the snapshot | open llama.cpp PR only; public Q4/Q8/BF16 GGUF draft exists |
 | hybrid state cache | GDN modes `S=5/4/3`; pool is `C*(S+D)` unless compatible ReplaySSM removes draft snapshots from that pool; SSM dtype/radix/memory-ratio controls | hybrid cache; post-release fixes can matter | llama.cpp recurrent/hybrid implementation |
 | prefix cache | Radix cache with hybrid-state rules | align mode/version gate | prompt cache |
 | tool/reasoning parser | `qwen3`, `qwen3_coder` | `qwen3`, `qwen3_coder` | endpoint/template dependent |
@@ -60,10 +61,10 @@ Framework cells below describe architecture/runtime support on capacity-suitable
 | exact Qwen3.8 architecture | prove in the installed revision | demonstrated by the reviewed oMLX 0.6.1 community recipe | prove in pinned rolling-master/GGUF metadata |
 | artifact | official-source conversion or pinned MLX quantization | pinned `Jundot/Qwen3.8-27B-oQ4e-mtp` in the reviewed entry | pinned GGUF Q4/Q6/Q8; projector separately when needed |
 | no-speculation control | required target-only lane | same artifact with `mtp_enabled=false` | required |
-| speculative decoding | sidecar/native implementation only when pinned and acceptance is exposed | native MTP depth sweep 1/2/3 | rolling model/draft support; exact pair gate |
+| speculative decoding | sidecar/native implementation only when pinned and acceptance is exposed; public DFlash 2 MLX backend is a separate challenger | native MTP depth sweep 1/2/3; DFlash 2 only through separately pinned `z-lab/omlx-fork` at the snapshot | DFlash 2 public GGUF exists but requires the open llama.cpp PR and exact pair gate |
 | ANE | do not infer use from chip capabilities | optional prefill path in a source-build lane; treat as TTFT A/B | not the ordinary Metal decode path |
 | memory evidence | MLX active/cache/peak + Metal + OS footprint | server footprint + OS/Metal counters | process footprint + Metal buffers/cache |
-| provenance boundary | open framework revisions can be pinned | public `jundot/omlx` tag plus exact vendored MLX/MLX-LM/MLX-VLM/dflash pins; do not use the README's empty-account link | open build and GGUF metadata, but converted-artifact quality remains separate |
+| provenance boundary | open framework revisions and `z-lab/dflash` can be pinned | keep upstream `jundot/omlx` releases separate from `z-lab/omlx-fork@0.6.2-dflash2`; pin target/draft/runtime independently | open build and GGUF metadata, but converted-artifact quality remains separate |
 
 ## Hardware facts that change the decision
 

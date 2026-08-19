@@ -86,7 +86,9 @@ Raw JSON 可精确重算：
 - continuous batch 未对齐时可能回退普通 decode；row-wise MTP 需要显式开关，已有 batch2/4 数据弱于普通 continuous batching；
 - 正式记录必须包含 configured max、实际 depth histogram、drafted/accepted、per-position、cycles、tok/cycle 和 fallback。
 
-公开 `dflash-mlx` registry 没有 Qwen3.8 target/draft pair。入口提到的 DFlash2 是 closed/private dependency，不是公开可复现候选。
+历史边界仍要保留：oMLX v0.6.1 pin 的公开 `dflash-mlx@2eb169f4` registry 没有 Qwen3.8 target/draft pair，因此它不能复现入口当时声称的 DFlash2 路线。这个事实不再代表 DFlash2 当前仍是私有能力：Inco AI 已于 2026-08-18 公开 [`Qwen3.8-27B-DFlash2`](https://huggingface.co/incoai/Qwen3.8-27B-DFlash2) 和 [GGUF](https://huggingface.co/incoai/Qwen3.8-27B-DFlash2-GGUF)，`z-lab/dflash` 提供 MLX backend，`z-lab/omlx-fork` 提供独立的 [`0.6.2-dflash2`](https://github.com/z-lab/omlx-fork/releases/tag/0.6.2-dflash2) 预编译包。
+
+新的 DFlash2 路线必须与 jundot/oMLX v0.6.1/v0.6.2 分开记录：它是公开可运行的 C 级 challenger，不是上游正式 release。BF16 drafter约 3.85 GB，Q4_K_M GGUF约 1.14 GB；静态权重大小不等于额外统一内存峰值。量化 MLX 先限制 `block_size <= 5`，并验证 extra prefill、swap/compression/pagein、长上下文、vision/tool/JSON和 continuous batching；上游当前已有 DFlash2 build 缺少 continuous batching benchmark 结果的 [开放问题](https://github.com/jundot/omlx/issues/2854)。完整边界见 [DFlash 2 专题调研](2026-08-19-dflash2.md)。
 
 v0.6.1 存在 MTP + TurboQuant KV crash；v0.6.2 已修复。因此：
 
@@ -154,6 +156,7 @@ DeepSeek：
 | MLX-VLM | full VLM/mRoPE，embedded MTP拆成sidecar，ragged batch，OpenAI chat/responses | 有 DeepSeek V4 MTP split，成熟度低于 oMLX | inspectable sidecar/multimodal challenger | structured output禁 speculative；APC/hybrid cache需 exact commit实测 |
 | MTPLX | Qwen native MTP kernels、AR/D1-D3 auto tuning、质量/热/长上下文 harness | 非主要路线 | Qwen性能研究 challenger | published Qwen artifacts在repo里未固定 revision，数字只能C级 |
 | mlx-dspark | external DSpark/DFlash/lookup、现场 cost-curve cap | 研究实现 | external drafter challenger | headline target/draft revisions和raw results不足 |
+| DFlash 2 MLX / oMLX fork | 公开 Qwen3.8-27B drafter、parallel block + selector + local convolution | `z-lab/dflash` MLX backend；`z-lab/omlx-fork` prebuilt | 与相同 target 的 MTP/DSpark challenger | 非 jundot/oMLX正式 release；额外内存/prefill、batching、长上下文和多模态仍需本机 gate |
 | llama.cpp Metal | GGUF、多KV类型；Qwen full GGUF可含embedded MTP；DeepSeek target需另导MTP或DSpark draft；server acceptance/per-position metrics | DeepSeek target + separate Lightning MTP/DSpark draft | 最开放的GGUF/Metal portable control | MTP在Metal上可正可负；Qwen image-token+MTP当前会提前回退/不支持；converted artifact和MLX artifact不同 |
 | Magnitude | 内嵌pinned llama.cpp、exact fit、硬件校准、受控benchmark | DSpark catalog/control | planner和product-lane comparison | catalog当前没有Qwen3.8 speculative default，不是性能engine冠军 |
 | Ollama native MLX | Qwen vision/self-draft/hybrid recurrent cache | exact dispatch gate | 易用local UX | 当前单request/无continuous batching，不是multi-user throughput首选 |
