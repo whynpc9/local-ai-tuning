@@ -13,6 +13,7 @@
 - [调研报告](research/2026-08-18-local-inference-landscape.md)
 - [Apple Silicon 扩展调研](research/2026-08-19-apple-silicon-extension.md)
 - [DFlash 2 专题调研](research/2026-08-19-dflash2.md)
+- [Qwen3.8-27B / M4 Max 128 GB 部署与调优实测](research/2026-08-20-qwen38-m4max-deployment.md)
 - [local-ai-inference-tuning skill](skills/local-ai-inference-tuning/SKILL.md)
 - [硬件采集脚本](skills/local-ai-inference-tuning/scripts/collect_hardware.py)
 - [Apple 运行窗 telemetry](skills/local-ai-inference-tuning/scripts/sample_apple_telemetry.py)
