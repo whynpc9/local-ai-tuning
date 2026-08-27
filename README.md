@@ -14,6 +14,8 @@
 - [Apple Silicon 扩展调研](research/2026-08-19-apple-silicon-extension.md)
 - [DFlash 2 专题调研](research/2026-08-19-dflash2.md)
 - [Qwen3.8-27B / M4 Max 128 GB 部署与调优实测](research/2026-08-20-qwen38-m4max-deployment.md)
+- [Qwen3.8-27B NVFP4 + SGLang MTP / 2× RTX PRO 6000 最终实施计划](research/2026-08-21-qwen38-27b-nvfp4-sglang-mtp-final-plan.md)
+- [Qwen3.8-Flash-Next / DGX Spark 三仓库调研归档](research/2026-08-27-qwen38-flash-next-dgx-spark-repos.md)
 - [local-ai-inference-tuning skill](skills/local-ai-inference-tuning/SKILL.md)
 - [硬件采集脚本](skills/local-ai-inference-tuning/scripts/collect_hardware.py)
 - [Apple 运行窗 telemetry](skills/local-ai-inference-tuning/scripts/sample_apple_telemetry.py)
