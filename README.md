@@ -16,6 +16,7 @@
 - [Qwen3.8-27B / M4 Max 128 GB 部署与调优实测](research/2026-08-20-qwen38-m4max-deployment.md)
 - [Qwen3.8-27B NVFP4 + SGLang MTP / 2× RTX PRO 6000 最终实施计划](research/2026-08-21-qwen38-27b-nvfp4-sglang-mtp-final-plan.md)
 - [Qwen3.8-Flash-Next / DGX Spark 三仓库调研归档](research/2026-08-27-qwen38-flash-next-dgx-spark-repos.md)
+- [GLM-5.3-Flash DFlash2 / 单 DGX Spark recipe 调研归档](research/2026-08-28-glm53-flash-dflash2-dgx-spark-recipe.md)
 - [local-ai-inference-tuning skill](skills/local-ai-inference-tuning/SKILL.md)
 - [硬件采集脚本](skills/local-ai-inference-tuning/scripts/collect_hardware.py)
 - [Apple 运行窗 telemetry](skills/local-ai-inference-tuning/scripts/sample_apple_telemetry.py)
